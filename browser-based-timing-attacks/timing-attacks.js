@@ -79,8 +79,8 @@
 				updateStatus('First bytes of response received');
 				var timeout = setTimeout(function() {
 					clearInterval(interval);
-					reject('ERROR: resource timed out after 5 seconds');
-				}, 5000);
+					reject('resource timed out after 10 seconds');
+				}, 10000);
 				var interval = setInterval(function() {
 					if (performance.getEntriesByName(url).length > numAlready) {
 						clearInterval(interval);
