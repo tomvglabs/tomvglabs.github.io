@@ -30,6 +30,7 @@ window.addEventListener('load', function() {
 			}
 			buttonEl.disabled = false;
 		}).catch(function(errMsg) {
+			buttonEl.disabled = false;
 			_updateStatus('ERROR: ' + errMsg);
 		});
 	}
@@ -66,6 +67,7 @@ window.addEventListener('load', function() {
 				buttonEl.disabled = false;
 			});
 		}).catch(function(errMsg) {
+			buttonEl.disabled = false;
 			_updateStatus('ERROR: ' + errMsg);
 		});
 	}
@@ -102,6 +104,7 @@ window.addEventListener('load', function() {
 				buttonEl.disabled = false;
 			});
 		}).catch(function(errMsg) {
+			buttonEl.disabled = false;
 			_updateStatus('ERROR: ' + errMsg);
 		});
 	}
