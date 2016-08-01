@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/assets/style.css">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+	<script type="text/javascript" src="timing-attacks.js"></script>
+	<script type="text/javascript" src="attack-examples.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a href="/"><img src="/assets/logo.svg" alt="tom.vg logo" width="500" heigth="91"></a>
+			<hr>
+		</div>
+		<div class="content">
+			<h1>Browser-based Timing Attacks</h1>
+			<p>This page provides a few proof-of-concept attacks against popular and widely used websites. If you are interested in knowing the technical details of these attacks, check out my blog post on <a href="https://tom.vg/2016/07/browser-based-timing-attacks/">browser-based timing attacks</a>. To the privacy conscious: all attacks are performed in JavaScript, the values are merely displayed in your browser and not captured (or at least not by me).</p>
+			<div id="login" class="entry">
+				<h3>Determine login status</h3>
+				<p>This attack uses the <a href="https://w3c.github.io/resource-timing/#dom-performanceresourcetiming-fetchstart">Resource Timing API</a> to determine whether a redirect was followed (in which case the <code>fetchStart</code> attribute will be at the start of the redirection instead of the initial request).</p>
+				<div class="button custom-select">
+					<select id="login-select">
+						<option value="https://www.facebook.com/messages">Facebook</option>
+						<option value="https://twitter.com/i/notifications">Twitter</option>
+						<option value="https://www.amazon.com/gp/your-account/order-history">Amazon</option>
+						<option value="https://www.instagram.com/explore/">Instagram</option>
+						<option value="https://www.reddit.com/message/inbox/">Reddit</option>
+						<option value="https://www.pinterest.com/settings">Pinterest</option>
+						<option value="https://www.netflix.com/browse">Netflix</option>
+						<option value="https://github.com/stars">GitHub</option>
+					</select>
+				</div><button id="login-button">Check login status</button> <span id="login-result"></span>
+				<pre id="login-debug"></pre>
+			</div>
+			<div id="fb-gender" class="entry">
+				<h3>Determine victim gender using Facebook posts</h3>
+				<p class="warning">
+					This attack requires you to be logged in to Facebook!
+					<br>
+					Also, third-party cookies should be enabled (the unfortunate default in every browser)
+				</p>
+				<p>As a preparation of this attack, two Facebook posts were created. <a href="https://www.facebook.com/labs.tom.vg/posts/135036256933426" target="_blank">The first post</a> is only visible to male Facebook users, <a href="https://www.facebook.com/labs.tom.vg/posts/135040183599700" target="_blank">the other post</a> is only visible to female Facebook users.</p>
+				<p>The response size of the returned resources depends on their visibility, which in turn depends on your gender. A visible post will have a larger response size (approx 110kB vs 40kB). By using a browser-based timing attack, this page (or any other one for that matter) can discover your gender. Click the button below to give it a try!</p>
+				<p>
+					<button id="fb-gender-button">Get gender</button> <span id="fb-gender-result"></span>
+				</p>
+				<pre id="fb-gender-debug"></pre>
+				<p>
+					<i>Did the attack provide you with the wrong result? The script that powers this proof-of-concept is rather simplistic. Many improvements should be made <s>before you put this script in a production environment</s>. This particular attack measures the time it takes to write content to the disk, so any concurrent IO operations may influence the attack.</i>
+				</p>
+			</div>
+			<div id="twitter-candidate" class="entry">
+				<h3>Determine your political preference based on Twitter followers</h3>
+				<p class="warning">
+					This attack requires you to be logged in to Twitter!
+					<br>
+					Also, third-party cookies should be enabled (the unfortunate default in every browser)
+				</p>
+				<p>
+					This attack will try to determine your favorite US presidential candidate. For this, I make the naive assumption that if you follow more people that follow @realDonaldTrump, you are rooting for Donald Trump. Of course the same goes for Hillary Clinton. This is done by estimating the size of the <code>{realDonaldTrump,HillaryClinton}/followers_you_follow</code> endpoints using a browser-based timing attack. On Chrome, the video-parsing attack is used, on other browsers this particular attack may not work, so here the same cache storage attack as above is used.
+				</p>
+				<p>
+					<button id="twitter-candidate-button">Get favorite candidate</button> <span id="twitter-candidate-result"></span>
+				</p>
+				<pre id="twitter-candidate-debug"></pre>
+			</div>
+			<div id="fb-gender" class="entry">
+				<h3>Determine victim age using Facebook posts</h3>
+				<p>Coming soon... In the meanwhile, take a look at <a href="https://www.youtube.com/watch?v=U7GeLw_nAOc#t=1428" target="_blank">the demo I gave at AppSec EU</a>.</p>
+			</div>
+			<div id="other" class="entry">
+				<h3>Other attacks</h3>
+				<p>Check out <a href="https://tom.vg/papers/timing-attacks_ccs2015.pdf">our paper</a> (section 4) for a number of other potential targets.</p>
+			</div>
+		</div>
+		<div class="footer">
+			<p>by <a href="https://twitter.com/tomvangoethem" target="_blank">Tom Van Goethem</a></p>
+		</div>
+	</div>
+</body>
+</html>
