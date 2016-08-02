@@ -14,7 +14,7 @@
 		</div>
 		<div class="content">
 			<h1>Browser-based Timing Attacks</h1>
-			<p>This page provides a few proof-of-concept attacks against popular and widely used websites. If you are interested in knowing the technical details of these attacks, check out my blog post on <a href="https://tom.vg/2016/07/browser-based-timing-attacks/">browser-based timing attacks</a>. To the privacy conscious: all attacks are performed in JavaScript, the values are merely displayed in your browser and not captured (or at least not by me).</p>
+			<p>This page provides a few proof-of-concept attacks against popular and widely used websites. If you are interested in knowing the technical details of these attacks, check out my blog post on <a href="https://tom.vg/2016/08/browser-based-timing-attacks/">browser-based timing attacks</a>. To the privacy conscious: all attacks are performed in JavaScript, the values are merely displayed in your browser and not captured (or at least not by me).</p>
 			<div id="login" class="entry">
 				<h3>Determine login status</h3>
 				<p>This attack uses the <a href="https://w3c.github.io/resource-timing/#dom-performanceresourcetiming-fetchstart">Resource Timing API</a> to determine whether a redirect was followed (in which case the <code>fetchStart</code> attribute will be at the start of the redirection instead of the initial request).</p>
