@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
 	<script type="text/javascript" src="timing-attacks.js"></script>
 	<script type="text/javascript" src="attack-examples.js"></script>
+	<title>Browser-based Timing Attacks</title>
 </head>
 <body>
 	<div class="container">
@@ -57,7 +58,7 @@
 					Also, third-party cookies should be enabled (the unfortunate default in every browser)
 				</p>
 				<p>
-					This attack will try to determine your favorite US presidential candidate. For this, I make the naive assumption that if you follow more people that follow @realDonaldTrump, you are rooting for Donald Trump. Of course the same goes for Hillary Clinton. This is done by estimating the size of the <code>{realDonaldTrump,HillaryClinton}/followers_you_follow</code> endpoints using a browser-based timing attack. On Chrome, the video-parsing attack is used, on other browsers this particular attack may not work, so here the same cache storage attack as above is used.
+					This attack will try to determine your favorite US presidential candidate. For this, I make the naive assumption that if you follow more people that follow @realDonaldTrump, you are rooting for Donald Trump. Of course the same goes for Hillary Clinton. This is done by estimating the size of the <code>{realDonaldTrump,HillaryClinton}/followers_you_follow</code> endpoints using a browser-based timing attack. On Chrome and Opera, the video-parsing attack is used, on other browsers this particular attack may not work, so here the same cache storage attack as above is used.
 				</p>
 				<p>
 					<button id="twitter-candidate-button">Get favorite candidate</button> <span id="twitter-candidate-result"></span>
